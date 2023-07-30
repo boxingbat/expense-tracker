@@ -19,7 +19,6 @@ require('./config/mongoose')
 app.engine('hbs', exphbs({ helpers: hbshelpers, defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
-//引用npm handlebars-dateformat調整日期格式
 Handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 app.use(methodOverride('_method'))

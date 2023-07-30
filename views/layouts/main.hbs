@@ -6,11 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://bootswatch.com/5/lux/bootstrap.min.css">
   <title>記帳本</title>
+  <style>
+    /* 將最上面那條選單列的背景色設定為 #808080（深灰色） */
+    .navbar {
+      background-color: #808080;
+    }
+  </style>
 </head>
 
 <body class="bg-light">
   <header>
-    <nav class="navbar navbar-dark justify-content-between" style="padding: 8px 16px; background-color: #10100f;">
+    <nav class="navbar navbar-dark justify-content-between" style="padding: 8px 16px;">
       <a class="navbar-brand" href="/">
         {{#if isAuthenticated}}{{ user.name}}的 {{/if}}
         記帳本
