@@ -4,6 +4,7 @@ const methodOverride = require('method-override')
 const Handlebars = require('handlebars')
 const PORT = process.env.PORT || 3000
 const app = express()
+const routes = require('./routes')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -15,6 +16,7 @@ app.engine('hbs', exphbs({defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(methodOverride('_method'))
 
+app.use(routes)
 
 app.listen(PORT, () => {
   console.log(`App is running on http://localhost:${PORT}`)

@@ -1,1 +1,45 @@
-{{{home page}}}
+<div class="col-7 my-3 m-auto">
+  <div class="mb-3">
+    <form action="/" method="GET">
+      <select class="form-select" name="category" id="category" aria-label="Default select example" required>
+        <option selected>類別</option>
+        <option value="1">家居物業</option>
+        <option value="2">交通出行</option>
+        <option value="3">休閒娛樂</option>
+        <option value="3">餐飲食品</option>
+        <option value="3">其他</option>
+      </select>
+    </form>
+  </div>
+  <div class="mt-5 text-center">
+    <h2>總消費：</h2>
+  </div>
+  <div class="mt-5">
+    <table class="table table-striped align-middle">
+      <thead>
+        <tr class="table-dark">
+          <th scope="col">類別</th>
+          <th scope="col">名稱</th>
+          <th scope="col">日期</th>
+          <th scope="col">金額</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>牛奶</td>
+          <td>2023/7/18</td>
+          <td>$100</td>
+          <td>
+            <a href="/records/edit" class="btn btn-success mx-5">修改</a>
+            <a href="" class="btn btn-danger">刪除</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mt-5 text-center">
+    <a href="/records/new" class="btn btn-outline-primary">新增支出</a>
+  </div>
+</div>
