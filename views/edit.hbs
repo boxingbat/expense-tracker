@@ -6,13 +6,13 @@
   </div>
 
   <div class="w-100">
-    <form action="/records/edit" method="POST">
+    <form action="/records/{{record._id}}/edit?_method=PUT" method="POST">
       <div class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">
           <span class="text-danger">*</span>
           名稱
         </span>
-        <input type="text" class="form-control" name="name" id="name" aria-label="Sizing example input"
+        <input type="text" class="form-control" name="name" id="name" value="{{record.name}}" aria-label="Sizing example input"
           aria-describedby="inputGroup-sizing-default" required>
       </div>
       <div class="input-group mb-3">
@@ -20,21 +20,22 @@
           <span class="text-danger">*</span>
           日期
         </span>
-        <input type="date" class="form-control" name="date" id="date" aria-describedby="date" aria-label="date"
-          placeholder="2020/xx/xx" required>
+        <input type="date" class="form-control" name="date" id="date" value="{{dateFormat record.date "YYYY-MM-DD"}}" aria-describedby="date" aria-label="date" required>
       </div>
       <div class="input-group mb-3">
         <label class="input-group-text" for="category">
           <span class="text-danger">*</span>
           類別
         </label>
-        <select class="form-select" name="category" id="category" required>
+        <select class="form-select" name="categoryName" id="category" required>
           <option selected>...</option>
-          <option value="1">家居物業</option>
-          <option value="2">交通出行</option>
-          <option value="3">休閒娛樂</option>
-          <option value="3">餐飲食品</option>
-          <option value="3">其他</option>
+          {{#each categories}}
+          {{#if this.isChoosed}}
+          <option selected value="{{this.name}}">{{this.name}}</option>
+          {{else}}
+          <option value="{{this.name}}">{{this.name}}</option>
+          {{/if}}
+          {{/each}}
         </select>
       </div>
       <div class="input-group mb-3">
@@ -42,12 +43,12 @@
           <span class="text-danger">*</span>
           金額
         </span>
-        <input type="number" class="form-control" name="amount" id="amount" aria-label="Sizing example input"
+        <input type="number" class="form-control" name="amount" id="amount" value="{{record.amount}}" aria-label="Sizing example input"
           aria-describedby="inputGroup-sizing-default" required>
       </div>
       <div class="mt-5 text-center">
         <a href="/" class="btn btn-outline-primary">返回</a>
-        <button class="btn btn-outline-primary" type="submit">確認修改</button>
+        <button class="btn btn-outline-primary" type="submit">確定修改</button>
       </div>
     </form>
   </div>

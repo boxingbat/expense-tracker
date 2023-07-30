@@ -1,41 +1,42 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
-const Handlebars = require('handlebars')
-const PORT = process.env.PORT || 3000
-const app = express()
-const routes = require('./routes')
 const session = require('express-session')
 const usePassport = require('./config/passport')
-const passport = require('./config/passport')
+const Handlebars = require('handlebars')
+const hbshelpers = require('handlebars-helpers')
+const routes = require('./routes')
+const PORT = 3000
+const app = express()
 
 if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config()
+  require('dotenv').config()
 }
 
 require('./config/mongoose')
 
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.engine('hbs', exphbs({ helpers: hbshelpers, defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
+
+//引用npm handlebars-dateformat調整日期格式
+Handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
+
 app.use(methodOverride('_method'))
-
 app.use(session({
-    secret: 'ThisIsMySecret',
-    resave: false,
-    saveUninitialized: true
+  secret: 'ThisIsMySecret',
+  resave: false,
+  saveUninitialized: true
 }))
-
 app.use(express.urlencoded({ extended: true }))
 usePassport(app)
-
 app.use((req, res, next) => {
-    res.locals.isAuthenticated = req.isAuthenticated()
-    res.locals.user = req.user
-    next()
-  })
-  
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
+
 app.use(routes)
 
 app.listen(PORT, () => {
-    console.log(`App is running on http://localhost:${PORT}`)
+  console.log(`App is running on http://localhost:${PORT}`)
 })
