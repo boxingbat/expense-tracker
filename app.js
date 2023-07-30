@@ -24,7 +24,7 @@ Handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 app.use(methodOverride('_method'))
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
