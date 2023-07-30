@@ -1,14 +1,10 @@
 <div class="col-md-9 my-3 m-auto">
     <div class="mb-3">
-        <form action="/" method="GET">
-            <select class="form-select" name="category" id="category" aria-label="Default select example" required>
-                <option selected>類別</option>
+        <form action="/search" method="get">
+            <select class="form-select" id="category" name="category" onchange="submit()">
+                <option value="">全部</option>
                 {{#each categories}}
-                {{#if this.isChoosed}}
-                <option selected value="{{this.name}}">{{this.name}}</option>
-                {{else}}
-                <option value="{{this.name}}">{{this.name}}</option>
-                {{/if}}
+                <option value="{{ this._id }}" {{#if this.selected}}selected{{/if}}>{{ this.name }}</option>
                 {{/each}}
             </select>
         </form>

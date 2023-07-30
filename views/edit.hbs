@@ -1,4 +1,4 @@
-<div class="col-7 my-3 m-auto">
+<div class="col-md-9 my-3 m-auto">
   <div class="my-2 text-center">
     <h2>請修改你的支出：</h2>
     <span class="text-danger">*</span>
@@ -12,15 +12,16 @@
           <span class="text-danger">*</span>
           名稱
         </span>
-        <input type="text" class="form-control" name="name" id="name" value="{{record.name}}" aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-default" required>
+        <input type="text" class="form-control" name="name" id="name" value="{{record.name}}"
+          aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">
           <span class="text-danger">*</span>
           日期
         </span>
-        <input type="date" class="form-control" name="date" id="date" value="{{dateFormat record.date "YYYY-MM-DD"}}" aria-describedby="date" aria-label="date" required>
+        <input type="date" class="form-control" name="date" id="date" value="{{dateFormat record.date "YYYY-MM-DD"}}"
+          aria-describedby="date" aria-label="date" required>
       </div>
       <div class="input-group mb-3">
         <label class="input-group-text" for="category">
@@ -28,13 +29,8 @@
           類別
         </label>
         <select class="form-select" name="categoryName" id="category" required>
-          <option selected>...</option>
           {{#each categories}}
-          {{#if this.isChoosed}}
-          <option selected value="{{this.name}}">{{this.name}}</option>
-          {{else}}
-          <option value="{{this.name}}">{{this.name}}</option>
-          {{/if}}
+          <option value="{{ this._id }}" {{#if this.selected}}selected{{/if}}>{{ this.name }}</option>
           {{/each}}
         </select>
       </div>
@@ -43,8 +39,8 @@
           <span class="text-danger">*</span>
           金額
         </span>
-        <input type="number" class="form-control" name="amount" id="amount" value="{{record.amount}}" aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-default" required>
+        <input type="number" class="form-control" name="amount" id="amount" value="{{record.amount}}"
+          aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
       </div>
       <div class="mt-5 text-center">
         <a href="/" class="btn btn-outline-primary">返回</a>
